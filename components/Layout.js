@@ -10,6 +10,7 @@ import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+import FilterPanel from './FilterPanel';
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -42,9 +43,7 @@ export default function Layout({ title, children }) {
         <meta name="description" content="lotus" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <ToastContainer position="bottom-center" limit={1} />
-
       <div className="flex min-h-screen flex-col justify-between relative">
         <header className="fixed, top-0">
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
@@ -56,9 +55,6 @@ export default function Layout({ title, children }) {
                 className="rounded shadow object-cover h-10 w-10"
               />
             </Link>
-
-
-
             <form
               onSubmit={submitHandler}
               className="mx-auto  hidden w-full justify-center md:flex"
@@ -139,7 +135,9 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
+      
         <main className="container m-auto mt-4 px-4">{children}</main>
+
         <footer className="flex h-10 justify-center items-center shadow-inner">
           <p>Copyright © 2023 DivsTeam</p>
         </footer>
