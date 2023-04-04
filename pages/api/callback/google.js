@@ -10,7 +10,7 @@ const options = {
   ],
   callbacks: {
     async signIn(user, account, profile) {
-      // Do something with the user object
+      // Do something with the user object dd
       return true;
     },
     async redirect(url, baseUrl) {
