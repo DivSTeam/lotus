@@ -21,6 +21,7 @@
     "@paypal/react-paypal-js": "^7.8.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
+    "build-react-npm": "^0.3.4",
     "chart.js": "^3.8.0",
     "cloudinary": "^1.30.0",
     "js-cookie": "^3.0.1",
