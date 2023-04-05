@@ -9,7 +9,11 @@ import { Store } from '../utils/Store';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
+
+import SlideLotus from '../components/Slider.js';
+
 import FilterPanel from '../components/FilterPanel';
+
 
 export default function Home({ products, featuredProducts }) {
   const { state, dispatch } = useContext(Store);
@@ -30,6 +34,10 @@ export default function Home({ products, featuredProducts }) {
 
   return (
     <Layout title="Home Page">
+
+      <SlideLotus />
+
+
 
       <Carousel showThumbs={false} autoPlay>
         {featuredProducts.map((product) => (
