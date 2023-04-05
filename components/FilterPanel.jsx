@@ -3,7 +3,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {AiOutlineHeart} from 'react-icons/fi'
 const theme = createTheme({
     palette: {
         secondary: {
@@ -19,15 +18,15 @@ function FilterPanel() {
     const [price, setPrice] = React.useState([1000, 5000]);
 
     const handleChange = (event, newValue) => {
-            setPrice(newValue);
+        setPrice(newValue);
     }
 
     const handleChecked = (e) => {
-        
+
 
         setCheked(prev => {
             const isChecked = checked.includes(e)
-            if(isChecked)       
+            if (isChecked)
                 return checked.filter(item => item != e)
             else
                 return [...prev, e]
@@ -124,11 +123,12 @@ function FilterPanel() {
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
                         {filterList.map(filter => (
+                            // eslint-disable-next-line react/jsx-key
                             <li>
-                                <input 
-                                    className=' accent-[#1D912C] h-4 w-4 ' 
-                                    type='checkbox' checked={checked.includes(filter.id)} 
-                                    onChange={() => handleChecked(filter.id)} 
+                                <input
+                                    className=' accent-[#1D912C] h-4 w-4 '
+                                    type='checkbox' checked={checked.includes(filter.id)}
+                                    onChange={() => handleChecked(filter.id)}
                                 />
                                 <span className='ml-2'>{filter.name}</span>
                             </li>
