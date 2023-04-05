@@ -30,7 +30,7 @@ export default function Home({ products, featuredProducts }) {
 
   return (
     <Layout title="Home Page">
-      
+
       <Carousel showThumbs={false} autoPlay>
         {featuredProducts.map((product) => (
           <div key={product._id}>
@@ -43,15 +43,29 @@ export default function Home({ products, featuredProducts }) {
         ))}
       </Carousel>
       <h2 className="h2 my-4">Latest Products</h2>
-      <div className="grid grid-cols-1 gap-20 w-4/5 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
-          <ProductItem
-            product={product}
-            key={product.slug}
-            addToCartHandler={addToCartHandler}
-          ></ProductItem>
-        ))}
+      <div className=" flex bg-green-300 w-full">
+
+        <div className='hidden sm:block'>
+          <FilterPanel></FilterPanel>
+        </div>
+
+        <div className="w-full px-4 py-4">
+          <div className="grid grid-cols-1 gap-20  md:grid-cols-3 lg:grid-cols-4 bg-blue-300">
+            {products.map((product) => (
+              <div className='productItem'>
+                <ProductItem
+                  product={product}
+                  key={product.slug}
+                  addToCartHandler={addToCartHandler}
+                ></ProductItem>
+              </div>
+
+            ))}
+          </div>
+        </div>
+
       </div>
+
     </Layout>
   );
 }
