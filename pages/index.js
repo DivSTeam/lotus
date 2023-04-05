@@ -50,7 +50,7 @@ export default function Home({ products, featuredProducts }) {
         </div>
 
         <div className="w-full px-4 py-4">
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
             {products.map((product) => (
               <div className='productItem pl-8'>
                 <ProductItem

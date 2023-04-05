@@ -17,7 +17,7 @@ export default function ProductItem({ product, addToCartHandler }) {
             <img
               src={product.image}
               alt={product.name}
-              className="rounded-xl shadow-sm w-full h-full object-cover"
+              className="rounded-0 shadow-sm w-full h-full object-cover p-6 "
             />
           </a>
         </Link>
