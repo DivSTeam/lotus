@@ -10,12 +10,17 @@ import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+
+import FilterPanel from './FilterPanel';
+
+
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import CustomizedMenus from './Menu'
+
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
@@ -47,10 +52,11 @@ export default function Layout({ title, children }) {
         <meta name="description" content="lotus" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <ToastContainer position="bottom-center" limit={1} />
 
+
       <div className="flex min-h-screen flex-col justify-between relative m-auto">
+
 
         <header className="sticky top-[-60px] bg-white shadow-md py-2">
           <div className="w-full h-8 flex gap-10 justify-between container m-auto ">
@@ -81,7 +87,9 @@ export default function Layout({ title, children }) {
                 className="rounded shadow object-cover h-8 w-10 min-w-[150px]"
               />
             </Link>
+
             <CustomizedMenus className={'bg-green-600'} />
+
             <form
               onSubmit={submitHandler}
               className="mx-auto hidden w-full justify-center md:flex"
@@ -169,7 +177,9 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
+
         <main className="container mt-4 px-4 mx-auto" >{children}</main>
+
         <footer className="flex h-10 justify-center items-center shadow-inner">
           <p>Copyright © 2023 DivsTeam</p>
         </footer>
