@@ -10,6 +10,7 @@ import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+import FooterLotus from './FooterLotus.js'
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -140,9 +141,10 @@ export default function Layout({ title, children }) {
           </nav>
         </header>
         <main className="container m-auto mt-4 px-4">{children}</main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
+        {/* <footer className="flex h-10 justify-center items-center shadow-inner">
           <p>Copyright © 2023 DivsTeam</p>
-        </footer>
+        </footer> */}
+        <FooterLotus />
       </div>
     </>
   );

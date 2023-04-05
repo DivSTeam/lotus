@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import slides from "../constants/slides.js";
+import React, { useEffect, useState } from "react";
+import slides from "./slides.js";
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'
 import { RxDotFilled } from 'react-icons/rx'
+import Link from 'next/link';
 
 const SlideLotus = () => {
 
@@ -20,20 +21,31 @@ const SlideLotus = () => {
     const gotoSlide = (indexSlide) => {
         setCurrentIndex(indexSlide);
     }
-
+    // useEffect(() =>
+    //     setInterval(() => {
+    //         setCurrentIndex(preState => preState - 1);
+    //     }, 10000)
+    //     , [])
 
     return (
-        <div className="max-w-[780px] h-[400px] w-full m-auto py-8 px-4 relative group"   >
+        <div className="
+            max-w-[80%]
+            max-h-[400px]
+            w-full 
+            m-auto
+            mb-10
+            md:text-center
+            py-8 px-4 relative group"  >
             <div >
                 <img
                     className="w-full h-full rounded-2xl bg-center bg-cover  duration-500 "
                     src={slides[currentIndex]}
                     alt={`img${slides[currentIndex]}`} />
             </div>
-            <div className=" hidden group-hover:block absolute top-[28%] -translate-x-0 -translate-y-[-50%] left-5 text-lg rounded-full p-3 bg-black/20 text-white cursor-pointer ">
+            <div className=" hidden group-hover:block absolute top-[35%] -translate-x-0 -translate-y-[-50%] left-5 text-lg rounded-full p-3 bg-black/20 text-white cursor-pointer ">
                 <BsChevronCompactLeft onClick={prevSlide} size={30} />
             </div>
-            <div className=" hidden group-hover:block absolute top-[28%] -translate-x-0 -translate-y-[-50%] right-5 text-lg rounded-full p-3 bg-black/20 text-white cursor-pointer ">
+            <div className=" hidden group-hover:block absolute top-[35%] -translate-x-0 -translate-y-[-50%] right-5 text-lg rounded-full p-3 bg-black/20 text-white cursor-pointer ">
                 <BsChevronCompactRight onClick={nextSlide} size={30} />
             </div>
             <div className="flex top-4 justify-center py-2">
