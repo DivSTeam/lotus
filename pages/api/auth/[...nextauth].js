@@ -4,6 +4,10 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from "next-auth/providers/google";
 import User from '../../../models/User';
 import db from '../../../utils/db';
+import EmailProvider  from 'next-auth/providers'; 
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import clientPromise from "../../../lib/mongodb"
+
 
 export default NextAuth({
   session: {
@@ -45,6 +49,10 @@ export default NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    EmailProvider({
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM
+    })
   ],
-  
+  adapter: MongoDBAdapter(clientPromise),
 });
