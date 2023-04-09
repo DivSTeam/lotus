@@ -44,8 +44,11 @@ a {
   @apply mb-5 block rounded-xl border border-gray-200 shadow-md;
 }
 
-.primary-button {
+.available-button {
   @apply rounded-xl bg-[#1D912C] py-2 px-4 shadow outline-none hover:bg-[#177423] active:bg-amber-500;
+}
+.unavailable-button {
+  @apply rounded-xl bg-[#DDDDDD] py-2 px-4 shadow outline-none hover:bg-[#CBCBCB] active:bg-[#DDDDDD];
 }
 
 .default-button {

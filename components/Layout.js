@@ -59,7 +59,7 @@ export default function Layout({ title, children }) {
       <div className="flex min-h-screen flex-col justify-between relative m-auto">
 
 
-        <header className="sticky top-[-60px] bg-white shadow-md py-2">
+        <header className="sticky top-[-40px] bg-white shadow-md py-2 z-50">
           <div className="w-full h-8 flex gap-10 justify-between container m-auto ">
             <div className="mail flex ">
               <MailOutlineIcon />

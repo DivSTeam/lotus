@@ -3,7 +3,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {AiOutlineHeart} from 'react-icons/fi'
+import { useRouter } from 'next/router';
+
 const theme = createTheme({
     palette: {
         secondary: {
@@ -18,20 +19,52 @@ function FilterPanel() {
     const [checked, setCheked] = useState([]);
     const [price, setPrice] = React.useState([1000, 5000]);
 
+    const router = useRouter();
+
+    // const {
+    //     popularity = 'all',
+    //     upper = 'all',
+    //     lower = 'all',
+    //     rating = 'all',
+    //   } = router.query;
+
+    const filterSortBy = ({
+        popularity,
+        upper,
+        lower,
+        rating,
+        newProduct,
+    }) => { 
+        const { query } = router;
+        if(popularity) query.popularity = popularity;
+        if(upper) query.upper = upper;
+        if(lower) query.lower = lower;
+        if(rating) query.rating = rating;
+        if(newProduct) query.newProduct = newProduct;
+
+        router.push({
+            pathname: router.pathname,
+            query: query,
+        })
+    }
+
     const handleChange = (event, newValue) => {
             setPrice(newValue);
     }
 
     const handleChecked = (e) => {
-        
 
         setCheked(prev => {
             const isChecked = checked.includes(e)
             if(isChecked)       
                 return checked.filter(item => item != e)
             else
+                
+                //if(e === "Lower by price") filterSortBy(prev => [...prev, {upper: "lowest"}]);
                 return [...prev, e]
         })
+
+        filterSortBy(checked);
 
     }
 
@@ -65,10 +98,8 @@ function FilterPanel() {
         }
     ]
 
-
-
     return (
-        <div className="h-screen w-72 border-2 rounded-xl mt-3">
+        <div className="h-[42rem] w-60 border-2 rounded-xl mt-3">
             <header className=' pt-4 pl-3'>
                 <h2 className='font-bold text-xl text-gray-500'>Filter</h2>
                 <h2 className='font-bold text-gl ml-4 mt-2 text-gray-500'>Price caps</h2>
@@ -124,11 +155,11 @@ function FilterPanel() {
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
                         {filterList.map(filter => (
-                            <li>
+                            <li className='mb-2'>
                                 <input 
-                                    className=' accent-[#1D912C] h-4 w-4 ' 
-                                    type='checkbox' checked={checked.includes(filter.id)} 
-                                    onChange={() => handleChecked(filter.id)} 
+                                    className=' accent-[#1D912C] h-4 w-4' 
+                                    type='checkbox' checked={checked.includes(filter.name)} 
+                                    onChange={() => handleChecked(filter.name)} 
                                 />
                                 <span className='ml-2'>{filter.name}</span>
                             </li>
