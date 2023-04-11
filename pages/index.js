@@ -10,6 +10,11 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
 
+import SlideLotus from '../components/Slider.js';
+
+import FilterPanel from '../components/FilterPanel';
+
+
 export default function Home({ products, featuredProducts }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -29,6 +34,11 @@ export default function Home({ products, featuredProducts }) {
 
   return (
     <Layout title="Home Page">
+
+      <SlideLotus />
+
+
+
       <Carousel showThumbs={false} autoPlay>
         {featuredProducts.map((product) => (
           <div key={product._id}>
@@ -41,15 +51,29 @@ export default function Home({ products, featuredProducts }) {
         ))}
       </Carousel>
       <h2 className="h2 my-4">Latest Products</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
-          <ProductItem
-            product={product}
-            key={product.slug}
-            addToCartHandler={addToCartHandler}
-          ></ProductItem>
-        ))}
+      <div className=" flex w-full">
+
+        <div className='hidden sm:block'>
+          <FilterPanel></FilterPanel>
+        </div>
+
+        <div className="w-full px-4 py-4">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
+            {products.map((product) => (
+              <div className='productItem pl-8'>
+                <ProductItem
+                  product={product}
+                  key={product.slug}
+                  addToCartHandler={addToCartHandler}
+                ></ProductItem>
+              </div>
+
+            ))}
+          </div>
+        </div>
+
       </div>
+
     </Layout>
   );
 }

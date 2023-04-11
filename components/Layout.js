@@ -10,6 +10,17 @@ import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
+import FooterLotus from './FooterLotus.js'
+
+import FilterPanel from './FilterPanel';
+
+
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonIcon from '@mui/icons-material/Person';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import CustomizedMenus from './Menu'
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -42,45 +53,73 @@ export default function Layout({ title, children }) {
         <meta name="description" content="lotus" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <ToastContainer position="bottom-center" limit={1} />
 
-      <div className="flex min-h-screen flex-col justify-between relative">
-        <header className="fixed, top-0">
-          <nav className="flex h-12 items-center px-4 justify-between shadow-md">
 
-            <Link href="/">
+      <div className="flex min-h-screen flex-col justify-between relative m-auto">
+
+
+        <header className="sticky top-[-60px] bg-white shadow-md py-2">
+          <div className="w-full h-8 flex gap-10 justify-between container m-auto ">
+            <div className="mail flex ">
+              <MailOutlineIcon />
+              <p>lotus@gmail.com</p>
+            </div>
+            <div className="map flex">
+              <WhereToVoteIcon />
+              <p>Saint Petersburg</p>
+            </div>
+            <div className="info flex">
+              <ul className=" flex gap-2">
+                <li>О компании</li>
+                <li>Оплата и доставка</li>
+                <li>Дисконтная карта</li>
+                <li>Рецепты</li>
+                <li>Оптовикам</li>
+                <li>Контакты</li>
+              </ul>
+            </div></div>
+          <hr className='mx-2' />
+          <nav className=" flex h-12 items-center  justify-between  w-full m-auto container mt-1">
+            <Link href="/" >
               <img
                 src={'/images/logo-pdp-1.png'}
                 alt={'logo'}
-                className="rounded shadow object-cover h-10 w-10"
+                className="rounded shadow object-cover h-8 w-10 min-w-[150px]"
               />
             </Link>
 
-
+            <CustomizedMenus className={'bg-green-600'} />
 
             <form
               onSubmit={submitHandler}
-              className="mx-auto  hidden w-full justify-center md:flex"
+              className="mx-auto hidden w-full justify-center md:flex"
             >
               <input
                 onChange={(e) => setQuery(e.target.value)}
                 type="text"
-                className="rounded-tr-none rounded-br-none p-1 text-sm   focus:ring-0"
+                className="rounded-tr-none rounded-br-none p-1 text-sm   min-w-[500px] focus:ring-0"
                 placeholder="Search products"
               />
               <button
-                className="rounded rounded-tl-none rounded-bl-none bg-amber-300 p-1 text-sm dark:text-black"
+                className="rounded rounded-tl-none rounded-bl-none bg-green-500 p-1 text-sm dark:text-black"
                 type="submit"
                 id="button-addon2"
               >
                 <SearchIcon className="h-5 w-5"></SearchIcon>
               </button>
             </form>
-            <div>
+            <div className='flex w-30'>
+
               <Link href="/cart">
                 <a className="p-2">
-                  Cart
+                  <FavoriteBorderIcon />
+                </a>
+              </Link>
+
+              <Link href="/cart">
+                <a className="p-2 flex flex-col-reverse">
+                  <AddShoppingCartIcon />
                   {cartItemsCount > 0 && (
                     <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                       {cartItemsCount}
@@ -92,12 +131,12 @@ export default function Layout({ title, children }) {
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
-                <Menu as="div" className="relative inline-block">
-                  <Menu.Button className="text-blue-600">
-                    {session.user.name}
+                <Menu as="div" className=" relative flex inline-block  align-middle">
+                  <Menu.Button className="text-green-600 flex my-auto mx-0" >
+                    <PersonIcon /><p className="whitespace-nowrap">{session.user.name}</p>
                   </Menu.Button>
-                  <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
-                    <Menu.Item>
+                  <Menu.Items className="absolute right-0 w-56 mt-11 -mr-4 origin-top-right bg-white  shadow-lg rounded-md ">
+                    <Menu.Item >
                       <DropdownLink className="dropdown-link" href="/profile">
                         Profile
                       </DropdownLink>
@@ -139,10 +178,10 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
+
         <main className="container m-auto mt-4 px-4">{children}</main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2023 DivsTeam</p>
-        </footer>
+
+        <FooterLotus />
       </div>
     </>
   );
