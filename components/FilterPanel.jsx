@@ -13,60 +13,45 @@ const theme = createTheme({
     },
 });
 
-function FilterPanel() {
+const filterList = [
+    {
+        id: 1,
+        name: "Popularity"
+    },
+    {
+        id: 2,
+        name: "Upper by price"
+    },
+    {
+        id: 3,
+        name: "Lower by price"
+    },
+    {
+        id: 4,
+        name: "Highest rating"
+    },
+    {
+        id: 5,
+        name: "New product"
+    },
+    {
+        id: 6,
+        name: "Sample brand"
+    }
+]
+
+function FilterPanel({Popularity, Brand, handleChecked}) {
     const minPrice = 0;
     const maxPrice = 10000;
-    const [checked, setCheked] = useState([]);
+
     const [price, setPrice] = React.useState([1000, 5000]);
 
-    const router = useRouter();
-
-    // const {
-    //     popularity = 'all',
-    //     upper = 'all',
-    //     lower = 'all',
-    //     rating = 'all',
-    //   } = router.query;
-
-    const filterSortBy = ({
-        popularity,
-        upper,
-        lower,
-        rating,
-        newProduct,
-    }) => { 
-        const { query } = router;
-        if(popularity) query.popularity = popularity;
-        if(upper) query.upper = upper;
-        if(lower) query.lower = lower;
-        if(rating) query.rating = rating;
-        if(newProduct) query.newProduct = newProduct;
-
-        router.push({
-            pathname: router.pathname,
-            query: query,
-        })
-    }
 
     const handleChange = (event, newValue) => {
-            setPrice(newValue);
+        setPrice(newValue);
     }
 
-    const handleChecked = (e) => {
 
-        setCheked(prev => {
-            const isChecked = checked.includes(e)
-            if(isChecked)       
-                return checked.filter(item => item != e)
-            else
-                
-                //if(e === "Lower by price") filterSortBy(prev => [...prev, {upper: "lowest"}]);
-                return [...prev, e]
-        })
-
-        filterSortBy(checked);
-
-    }
 
     const handleMin = (e) => {
         if (e >= 0 && e <= 10000) { setPrice(prev => [e, prev[1]]); }
@@ -75,28 +60,7 @@ function FilterPanel() {
         if (e >= 0 && e <= 10000) { setPrice(prev => [prev[0], e]); }
     }
 
-    const filterList = [
-        {
-            id: 1,
-            name: "Popularity"
-        },
-        {
-            id: 2,
-            name: "Upper by price"
-        },
-        {
-            id: 3,
-            name: "Lower by price"
-        },
-        {
-            id: 4,
-            name: "Highest rating"
-        },
-        {
-            id: 5,
-            name: "New product"
-        }
-    ]
+
 
     return (
         <div className="h-[42rem] w-60 border-2 rounded-xl mt-3">
@@ -152,18 +116,28 @@ function FilterPanel() {
                 <div>
                     <h2 className='font-bold text-gl ml-4 mt-2 text-gray-500'>Sort by</h2>
                 </div>
+
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
-                        {filterList.map(filter => (
+                      
                             <li className='mb-2'>
-                                <input 
-                                    className=' accent-[#1D912C] h-4 w-4' 
-                                    type='checkbox' checked={checked.includes(filter.name)} 
-                                    onChange={() => handleChecked(filter.name)} 
+                                <input
+                                    className=' accent-[#1D912C] h-4 w-4'
+                                    type='checkbox' //checked={checked.includes(Popularity)}
+                                    onClick={() => handleChecked(Popularity)}
                                 />
-                                <span className='ml-2'>{filter.name}</span>
+                                <span className='ml-2'>{Popularity}</span>
                             </li>
-                        ))}
+
+                            <li className='mb-2'>
+                                <input
+                                    className=' accent-[#1D912C] h-4 w-4'
+                                    type='checkbox' //checked={checked.includes(Brand)}
+                                    onClick={() => handleChecked(Brand)}
+                                />
+                                <span className='ml-2'>{Brand}</span>
+                            </li>
+                        
                     </ul>
                 </div>
             </div>
