@@ -24,7 +24,7 @@ function CartScreen() {
     if (data.countInStock < quantity) {
       return toast.error('Sorry. Product is out of stock');
     }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity} });
     toast.success('Product updated in the cart');
   };
   return (
