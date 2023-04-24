@@ -9,7 +9,7 @@ import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
 import db from '../utils/db';
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 4;
 
 const prices = [
   {
@@ -169,10 +169,10 @@ export default function Search(props) {
               {rating !== 'all' && ' : Rating ' + rating + ' & up'}
               &nbsp;
               {(query !== 'all' && query !== '') ||
-              category !== 'all' ||
-              brand !== 'all' ||
-              rating !== 'all' ||
-              price !== 'all' ? (
+                category !== 'all' ||
+                brand !== 'all' ||
+                rating !== 'all' ||
+                price !== 'all' ? (
                 <button onClick={() => router.push('/search')}>
                   <XCircleIcon className="h-5 w-5" />
                 </button>
@@ -204,9 +204,8 @@ export default function Search(props) {
                 [...Array(pages).keys()].map((pageNumber) => (
                   <li key={pageNumber}>
                     <button
-                      className={`default-button m-2 ${
-                        page == pageNumber + 1 ? 'font-bold' : ''
-                      } `}
+                      className={`default-button m-2 ${page == pageNumber + 1 ? 'font-bold' : ''
+                        } `}
                       onClick={() => pageHandler(pageNumber + 1)}
                     >
                       {pageNumber + 1}
@@ -234,44 +233,44 @@ export async function getServerSideProps({ query }) {
   const queryFilter =
     searchQuery && searchQuery !== 'all'
       ? {
-          name: {
-            $regex: searchQuery,
-            $options: 'i',
-          },
-        }
+        name: {
+          $regex: searchQuery,
+          $options: 'i',
+        },
+      }
       : {};
   const categoryFilter = category && category !== 'all' ? { category } : {};
   const brandFilter = brand && brand !== 'all' ? { brand } : {};
   const ratingFilter =
     rating && rating !== 'all'
       ? {
-          rating: {
-            $gte: Number(rating),
-          },
-        }
+        rating: {
+          $gte: Number(rating),
+        },
+      }
       : {};
   // 10-50
   const priceFilter =
     price && price !== 'all'
       ? {
-          price: {
-            $gte: Number(price.split('-')[0]),
-            $lte: Number(price.split('-')[1]),
-          },
-        }
+        price: {
+          $gte: Number(price.split('-')[0]),
+          $lte: Number(price.split('-')[1]),
+        },
+      }
       : {};
   const order =
     sort === 'featured'
       ? { isFeatured: -1 }
       : sort === 'lowest'
-      ? { price: 1 }
-      : sort === 'highest'
-      ? { price: -1 }
-      : sort === 'toprated'
-      ? { rating: -1 }
-      : sort === 'newest'
-      ? { createdAt: -1 }
-      : { _id: -1 };
+        ? { price: 1 }
+        : sort === 'highest'
+          ? { price: -1 }
+          : sort === 'toprated'
+            ? { rating: -1 }
+            : sort === 'newest'
+              ? { createdAt: -1 }
+              : { _id: -1 };
 
   await db.connect();
   const categories = await Product.find().distinct('category');
