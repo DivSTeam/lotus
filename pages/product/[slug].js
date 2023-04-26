@@ -9,11 +9,13 @@ import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store';
 import { HeartIcon, ShoppingCartIcon, PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/outline';
+import ProductItem from '../../components/ProductItem';
+
 
 export default function ProductScreen(props) {
   const [fill, setFill] = useState(false);
   const [numItem, setNumItem] = useState(1);
-  const { product } = props;
+  const { product, products, featuredProducts } = props;
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
   if (!product) {
@@ -28,9 +30,6 @@ export default function ProductScreen(props) {
     if (data.countInStock < quantity) {
       return toast.error('Sorry. Product is out of stock');
     }
-    // console.log(typeof(quantity))
-    // console.log(typeof(num))
-
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   };
@@ -106,6 +105,7 @@ export default function ProductScreen(props) {
         </div>
 
       </div>
+
     </Layout>
   );
 }
@@ -116,10 +116,15 @@ export async function getServerSideProps(context) {
 
   await db.connect();
   const product = await Product.findOne({ slug }).lean();
+  const products = await Product.find().lean();
+  // const featuredProducts = await Product.find({ isFeatured: true }).lean();
   await db.disconnect();
   return {
     props: {
       product: product ? db.convertDocToObj(product) : null,
+      //featuredProducts: featuredProducts.map(db.convertDocToObj),
+      products: products.map(db.convertDocToObj),
     },
   };
 }
+

@@ -63,7 +63,7 @@ function FilterPanel({Popularity, Brand, handleChecked}) {
 
 
     return (
-        <div className="h-[42rem] w-60 border-2 rounded-xl mt-3">
+        <div className="h-[34rem] w-60 border-2 rounded-xl mt-3">
             <header className=' pt-4 pl-3'>
                 <h2 className='font-bold text-xl text-gray-500'>Filter</h2>
                 <h2 className='font-bold text-gl ml-4 mt-2 text-gray-500'>Price caps</h2>

@@ -9,7 +9,7 @@ import { Store } from '../utils/Store';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import SlideLotus from '../components/Slider.js';
 
 import FilterPanel from '../components/FilterPanel';
@@ -47,34 +47,6 @@ export default function Home({ products, featuredProducts }, Brand, Popularity) 
   const { cart } = state;
 
   // filter function
- 
-
-
-  const router = useRouter();
-  const filterSortBy = ({
-    popularity,
-    upper,
-    lower,
-    rating,
-    newProduct,
-    sampleBrand,
-  }) => {
-    const { query } = router;
-    if (popularity) query.popularity = popularity;
-    if (upper) query.upper = upper;
-    if (lower) query.lower = lower;
-    if (rating) query.rating = rating;
-    if (newProduct) query.newProduct = newProduct;
-    if (sampleBrand) query.sampleBrand = sampleBrand;
-
-    router.push({
-      pathname: router.pathname,
-      query: query,
-    })
-  }
-  const sampleHandler = (e) => {
-    filterSearch({ sampleBrand: e.target.value });
-  };
 
   const [checked, setCheked] = useState([]);
   const handleChecked = (e) => {
@@ -132,7 +104,7 @@ export default function Home({ products, featuredProducts }, Brand, Popularity) 
         </div>
 
         <div className="w-full px-4 py-4">
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
             {products.map((product) => (
               <div className='productItem pl-8'>
                 <ProductItem
@@ -141,11 +113,58 @@ export default function Home({ products, featuredProducts }, Brand, Popularity) 
                   addToCartHandler={addToCartHandler}
                 ></ProductItem>
               </div>
-
             ))}
           </div>
         </div>
+      </div>
 
+
+      {/* Лучшие предложения */}
+      <div>
+        <img
+          className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
+          src='/images/banner1.jpg'
+        />
+      </div>
+      <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>
+        Лучшие предложения
+      </div>
+      <div className="w-full px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {products.map((product) => (
+            <div className='productItem pl-8'>
+              <ProductItem
+                product={product}
+                key={product.slug}
+                addToCartHandler={addToCartHandler}
+              ></ProductItem>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Новинки */}
+      <div>
+        <img
+          className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
+          src='/images/banner2.jpg'
+        />
+      </div>
+      <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>
+        Новинки
+      </div>
+      <div className="w-full px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {products.map((product) => (
+            <div className='productItem pl-8'>
+              <ProductItem
+                product={product}
+                key={product.slug}
+                addToCartHandler={addToCartHandler}
+              ></ProductItem>
+            </div>
+          ))}
+        </div>
       </div>
 
     </Layout>
