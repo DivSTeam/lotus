@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import Layout from '../components/Layout';
 import ProductItem from '../components/ProductItem';
@@ -9,10 +9,57 @@ import { Store } from '../utils/Store';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import SlideLotus from '../components/Slider.js';
 
-export default function Home({ products, featuredProducts }) {
+import FilterPanel from '../components/FilterPanel';
+import { useRouter } from 'next/router';
+
+const filterList = [
+  {
+    id: 1,
+    name: "Popularity"
+  },
+  {
+    id: 2,
+    name: "Upper by price"
+  },
+  {
+    id: 3,
+    name: "Lower by price"
+  },
+  {
+    id: 4,
+    name: "Highest rating"
+  },
+  {
+    id: 5,
+    name: "New product"
+  },
+  {
+    id: 6,
+    name: "Sample brand"
+  }
+]
+
+export default function Home({ products, featuredProducts }, Brand, Popularity) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+
+  // filter function
+
+  const [checked, setCheked] = useState([]);
+  const handleChecked = (e) => {
+    setCheked(prev => {
+      const isChecked = checked.includes(e)
+      if (isChecked)
+        return checked.filter(item => item != e)
+      else
+        return [...prev, e]
+    })
+  }
+
+  //---------------------------------------------------------
 
   const addToCartHandler = async (product) => {
     const existItem = cart.cartItems.find((x) => x.slug === product.slug);
@@ -27,8 +74,12 @@ export default function Home({ products, featuredProducts }) {
     toast.success('Product added to the cart');
   };
 
+
   return (
     <Layout title="Home Page">
+
+      <SlideLotus />
+
       <Carousel showThumbs={false} autoPlay>
         {featuredProducts.map((product) => (
           <div key={product._id}>
@@ -41,15 +92,81 @@ export default function Home({ products, featuredProducts }) {
         ))}
       </Carousel>
       <h2 className="h2 my-4">Latest Products</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {products.map((product) => (
-          <ProductItem
-            product={product}
-            key={product.slug}
-            addToCartHandler={addToCartHandler}
-          ></ProductItem>
-        ))}
+      <div className=" flex w-full">
+
+        <div className='hidden sm:block'>
+          <FilterPanel
+            Brand={"Brand"}
+            Popularity={"Popularity"}
+            handleChecked={handleChecked}
+          >
+          </FilterPanel>
+        </div>
+
+        <div className="w-full px-4 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+            {products.map((product) => (
+              <div className='productItem pl-8'>
+                <ProductItem
+                  product={product}
+                  key={product.slug}
+                  addToCartHandler={addToCartHandler}
+                ></ProductItem>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
+
+      {/* Лучшие предложения */}
+      <div>
+        <img
+          className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
+          src='/images/banner1.jpg'
+        />
+      </div>
+      <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>
+        Лучшие предложения
+      </div>
+      <div className="w-full px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {products.map((product) => (
+            <div className='productItem pl-8'>
+              <ProductItem
+                product={product}
+                key={product.slug}
+                addToCartHandler={addToCartHandler}
+              ></ProductItem>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Новинки */}
+      <div>
+        <img
+          className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
+          src='/images/banner2.jpg'
+        />
+      </div>
+      <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>
+        Новинки
+      </div>
+      <div className="w-full px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {products.map((product) => (
+            <div className='productItem pl-8'>
+              <ProductItem
+                product={product}
+                key={product.slug}
+                addToCartHandler={addToCartHandler}
+              ></ProductItem>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </Layout>
   );
 }

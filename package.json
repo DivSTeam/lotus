@@ -9,11 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.6",
     "@headlessui/react": "^1.6.2",
     "@heroicons/react": "^1.0.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.16",
+
     "@paypal/react-paypal-js": "^7.8.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
+    "build-react-npm": "^0.3.4",
     "chart.js": "^3.8.0",
     "cloudinary": "^1.30.0",
     "js-cookie": "^3.0.1",
@@ -24,6 +32,7 @@
     "react-chartjs-2": "^4.2.0",
     "react-dom": "18.0.0",
     "react-hook-form": "^7.31.2",
+    "react-icons": "^4.8.0",
     "react-responsive-carousel": "^3.2.23",
     "react-toastify": "^9.0.1"
   },
@@ -33,6 +42,7 @@
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
     "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "typescript": "^5.0.3"
   }
 }
