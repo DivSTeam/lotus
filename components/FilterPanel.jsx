@@ -106,10 +106,8 @@ function FilterPanel({Popularity, Brand, handleChecked}) {
                             />
                         </Box>
                     </ThemeProvider>
-
                 </div>
             </div>
-
 
             {/* filter */}
             <div className=' ml-4 mt-6'>
@@ -119,7 +117,7 @@ function FilterPanel({Popularity, Brand, handleChecked}) {
 
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
-                      
+
                             <li className='mb-2'>
                                 <input
                                     className=' accent-[#1D912C] h-4 w-4'
