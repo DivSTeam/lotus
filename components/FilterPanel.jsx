@@ -3,6 +3,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/router';
+
 const theme = createTheme({
     palette: {
         secondary: {
@@ -11,28 +13,45 @@ const theme = createTheme({
     },
 });
 
-function FilterPanel() {
+const filterList = [
+    {
+        id: 1,
+        name: "Popularity"
+    },
+    {
+        id: 2,
+        name: "Upper by price"
+    },
+    {
+        id: 3,
+        name: "Lower by price"
+    },
+    {
+        id: 4,
+        name: "Highest rating"
+    },
+    {
+        id: 5,
+        name: "New product"
+    },
+    {
+        id: 6,
+        name: "Sample brand"
+    }
+]
+
+function FilterPanel({ Popularity, Brand, handleChecked }) {
     const minPrice = 0;
     const maxPrice = 10000;
-    const [checked, setCheked] = useState([]);
+
     const [price, setPrice] = React.useState([1000, 5000]);
+
 
     const handleChange = (event, newValue) => {
         setPrice(newValue);
     }
 
-    const handleChecked = (e) => {
 
-
-        setCheked(prev => {
-            const isChecked = checked.includes(e)
-            if (isChecked)
-                return checked.filter(item => item != e)
-            else
-                return [...prev, e]
-        })
-
-    }
 
     const handleMin = (e) => {
         if (e >= 0 && e <= 10000) { setPrice(prev => [e, prev[1]]); }
@@ -41,33 +60,10 @@ function FilterPanel() {
         if (e >= 0 && e <= 10000) { setPrice(prev => [prev[0], e]); }
     }
 
-    const filterList = [
-        {
-            id: 1,
-            name: "Popularity"
-        },
-        {
-            id: 2,
-            name: "Upper by price"
-        },
-        {
-            id: 3,
-            name: "Lower by price"
-        },
-        {
-            id: 4,
-            name: "Highest rating"
-        },
-        {
-            id: 5,
-            name: "New product"
-        }
-    ]
-
 
 
     return (
-        <div className="h-screen w-72 border-2 rounded-xl mt-3">
+        <div className="h-[34rem] w-60 border-2 rounded-xl mt-3">
             <header className=' pt-4 pl-3'>
                 <h2 className='font-bold text-xl text-gray-500'>Filter</h2>
                 <h2 className='font-bold text-gl ml-4 mt-2 text-gray-500'>Price caps</h2>
@@ -110,29 +106,36 @@ function FilterPanel() {
                             />
                         </Box>
                     </ThemeProvider>
-
                 </div>
             </div>
-
 
             {/* filter */}
             <div className=' ml-4 mt-6'>
                 <div>
                     <h2 className='font-bold text-gl ml-4 mt-2 text-gray-500'>Sort by</h2>
                 </div>
+
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
-                        {filterList.map(filter => (
-                            // eslint-disable-next-line react/jsx-key
-                            <li>
-                                <input
-                                    className=' accent-[#1D912C] h-4 w-4 '
-                                    type='checkbox' checked={checked.includes(filter.id)}
-                                    onChange={() => handleChecked(filter.id)}
-                                />
-                                <span className='ml-2'>{filter.name}</span>
-                            </li>
-                        ))}
+
+                        <li className='mb-2'>
+                            <input
+                                className=' accent-[#1D912C] h-4 w-4'
+                                type='checkbox' //checked={checked.includes(Popularity)}
+                                onClick={() => handleChecked(Popularity)}
+                            />
+                            <span className='ml-2'>{Popularity}</span>
+                        </li>
+
+                        <li className='mb-2'>
+                            <input
+                                className=' accent-[#1D912C] h-4 w-4'
+                                type='checkbox' //checked={checked.includes(Brand)}
+                                onClick={() => handleChecked(Brand)}
+                            />
+                            <span className='ml-2'>{Brand}</span>
+                        </li>
+
                     </ul>
                 </div>
             </div>
