@@ -30,18 +30,13 @@ export default function LoginScreen() {
     try {
       await axios.post("/api/auth/signup", {
         name,
-        lastName,
-        phoneNumber,
         email,
-        birthday,
         password,
       });
 
       const result = await signIn("credentials", {
         redirect: false,
-        phoneNumber,
         email,
-        birthday,
         password,
       });
       if (result.error) {
@@ -104,7 +99,7 @@ export default function LoginScreen() {
               required: "Пожалуйста, введите номер телефона",
               pattern: {
                 value:
-                  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
+                  /^[\\+]?[(]?[0-9]{3}[)]?[-\s\\.]?[0-9]{3}[-\s\\.]?[0-9]{4,6}$/im,
                 message: "Пожалуйста введите правильный номер телефона",
               },
             })}

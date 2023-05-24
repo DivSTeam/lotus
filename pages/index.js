@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import { useContext, useState } from 'react';
@@ -124,6 +125,7 @@ export default function Home({ products, featuredProducts }) {
         <img
           className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
           src='/images/banner1.jpg'
+          alt="img"
         />
       </div>
       <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>
@@ -149,6 +151,7 @@ export default function Home({ products, featuredProducts }) {
         <img
           className=" w-full h-44 mt-7 mb-7 object-cover rounded-2xl"
           src='/images/banner2.jpg'
+          alt="img"
         />
       </div>
       <div className='flex justify-center font-bold text-2xl text-gray-500 mb-7'>

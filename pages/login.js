@@ -44,7 +44,7 @@ export default function LoginScreen() {
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 class="mt-16 mb-14 text-4xl font-bold text-center">Вход</h1>
+        <h1 className="mt-16 mb-14 text-4xl font-bold text-center">Вход</h1>
         <div className="mb-6 mx-auto w-full max-w-md ">
           <label className="block mb-2 text-xs" htmlFor="email">
             Email или Телефон
@@ -98,7 +98,7 @@ export default function LoginScreen() {
           <label
             className="ml-2 text-xs inline-block line-he"
             htmlFor="save-password"
-            // style="display: inline-block; line-height: 2px;"
+          // style="display: inline-block; line-height: 2px;"
           >
             Запомнить меня
           </label>
