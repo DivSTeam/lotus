@@ -1,9 +1,9 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 const theme = createTheme({
     palette: {
@@ -13,34 +13,34 @@ const theme = createTheme({
     },
 });
 
-const filterList = [
-    {
-        id: 1,
-        name: "Popularity"
-    },
-    {
-        id: 2,
-        name: "Upper by price"
-    },
-    {
-        id: 3,
-        name: "Lower by price"
-    },
-    {
-        id: 4,
-        name: "Highest rating"
-    },
-    {
-        id: 5,
-        name: "New product"
-    },
-    {
-        id: 6,
-        name: "Sample brand"
-    }
-]
+// const filterList = [
+//     {
+//         id: 1,
+//         name: "Popularity"
+//     },
+//     {
+//         id: 2,
+//         name: "Upper by price"
+//     },
+//     {
+//         id: 3,
+//         name: "Lower by price"
+//     },
+//     {
+//         id: 4,
+//         name: "Highest rating"
+//     },
+//     {
+//         id: 5,
+//         name: "New product"
+//     },
+//     {
+//         id: 6,
+//         name: "Sample brand"
+//     }
+// ]
 
-function FilterPanel({Popularity, Brand, handleChecked}) {
+function FilterPanel({ Popularity, Brand, handleChecked }) {
     const minPrice = 0;
     const maxPrice = 10000;
 
@@ -118,24 +118,24 @@ function FilterPanel({Popularity, Brand, handleChecked}) {
                 <div className='ml-8 mt-3 text-gl'>
                     <ul className=''>
 
-                            <li className='mb-2'>
-                                <input
-                                    className=' accent-[#1D912C] h-4 w-4'
-                                    type='checkbox' //checked={checked.includes(Popularity)}
-                                    onClick={() => handleChecked(Popularity)}
-                                />
-                                <span className='ml-2'>{Popularity}</span>
-                            </li>
+                        <li className='mb-2'>
+                            <input
+                                className=' accent-[#1D912C] h-4 w-4'
+                                type='checkbox' //checked={checked.includes(Popularity)}
+                                onClick={() => handleChecked(Popularity)}
+                            />
+                            <span className='ml-2'>{Popularity}</span>
+                        </li>
 
-                            <li className='mb-2'>
-                                <input
-                                    className=' accent-[#1D912C] h-4 w-4'
-                                    type='checkbox' //checked={checked.includes(Brand)}
-                                    onClick={() => handleChecked(Brand)}
-                                />
-                                <span className='ml-2'>{Brand}</span>
-                            </li>
-                        
+                        <li className='mb-2'>
+                            <input
+                                className=' accent-[#1D912C] h-4 w-4'
+                                type='checkbox' //checked={checked.includes(Brand)}
+                                onClick={() => handleChecked(Brand)}
+                            />
+                            <span className='ml-2'>{Brand}</span>
+                        </li>
+
                     </ul>
                 </div>
             </div>

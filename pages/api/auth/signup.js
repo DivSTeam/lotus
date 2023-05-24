@@ -1,6 +1,9 @@
 import bcryptjs from 'bcryptjs';
 import User from '../../../models/User';
 import db from '../../../utils/db';
+import  sendVerificationEmail  from '../../../utils/verificationEmail';
+import { nanoid } from 'nanoid';
+
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -28,15 +31,18 @@ async function handler(req, res) {
     await db.disconnect();
     return;
   }
+  const verificationToken = nanoid();
 
   const newUser = new User({
     name,
     email,
     password: bcryptjs.hashSync(password),
     isAdmin: false,
+    verificationToken : verificationToken
   });
 
   const user = await newUser.save();
+  await sendVerificationEmail(user);
   await db.disconnect();
   res.status(201).send({
     message: 'Created user!',

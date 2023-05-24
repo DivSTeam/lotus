@@ -64,7 +64,7 @@ export default function CustomizedMenus() {
   return (
     <div className='ml-10'>
       <Button
-        className="primary-button bg-green-600"
+        className="primary-button bg-green-600 h-8 w-52"
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
@@ -74,7 +74,7 @@ export default function CustomizedMenus() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Options
+        Product Catalog
       </Button>
       <StyledMenu
         id="demo-customized-menu"

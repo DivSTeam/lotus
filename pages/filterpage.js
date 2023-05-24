@@ -12,22 +12,22 @@ import FilterPanel from '../components/FilterPanel';
 
 const PAGE_SIZE = 2;
 
-const prices = [
-    {
-        name: '$1 to $50',
-        value: '1-50',
-    },
-    {
-        name: '$51 to $200',
-        value: '51-200',
-    },
-    {
-        name: '$201 to $1000',
-        value: '201-1000',
-    },
-];
+// const prices = [
+//     {
+//         name: '$1 to $50',
+//         value: '1-50',
+//     },
+//     {
+//         name: '$51 to $200',
+//         value: '51-200',
+//     },
+//     {
+//         name: '$201 to $1000',
+//         value: '201-1000',
+//     },
+// ];
 
-const ratings = [1, 2, 3, 4, 5];
+// const ratings = [1, 2, 3, 4, 5];
 
 export default function Filterpage(props) {
     const router = useRouter();
@@ -42,7 +42,7 @@ export default function Filterpage(props) {
         page = 1,
     } = router.query;
 
-    const { products, countProducts, categories, brands, pages } = props;
+    const { products, countProducts, pages } = props;
 
     const filterSearch = ({
         page,
@@ -71,9 +71,9 @@ export default function Filterpage(props) {
             query: query,
         });
     };
-    const categoryHandler = (e) => {
-        filterSearch({ category: e.target.value });
-    };
+    // const categoryHandler = (e) => {
+    //     filterSearch({ category: e.target.value });
+    // };
     const pageHandler = (page) => {
         filterSearch({ page });
     };
@@ -83,12 +83,12 @@ export default function Filterpage(props) {
     const sortHandler = (e) => {
         filterSearch({ sort: e.target.value });
     };
-    const priceHandler = (e) => {
-        filterSearch({ price: e.target.value });
-    };
-    const ratingHandler = (e) => {
-        filterSearch({ rating: e.target.value });
-    };
+    // const priceHandler = (e) => {
+    //     filterSearch({ price: e.target.value });
+    // };
+    // const ratingHandler = (e) => {
+    //     filterSearch({ rating: e.target.value });
+    // };
 
     const { state, dispatch } = useContext(Store);
     const addToCartHandler = async (product) => {
@@ -109,8 +109,7 @@ export default function Filterpage(props) {
 
         setCheked(prev => {
             const isChecked = checked.includes(e)
-            if (isChecked)
-            {
+            if (isChecked) {
                 switch (e) {
                     case "Brand":
                         brandHandler("all");
@@ -118,7 +117,7 @@ export default function Filterpage(props) {
                 }
                 return checked.filter(item => item != e)
             }
-                
+
             else {
                 switch (e) {
                     case "Brand":
@@ -134,12 +133,12 @@ export default function Filterpage(props) {
         <Layout title="filter">
 
             <div className="grid md:grid-cols-4 md:gap-5">
-            <FilterPanel
-                Brand={"Brand"}
-                Popularity={"Popularity"}
-                handleChecked={handleChecked}
-            >
-            </FilterPanel>
+                <FilterPanel
+                    Brand={"Brand"}
+                    Popularity={"Popularity"}
+                    handleChecked={handleChecked}
+                >
+                </FilterPanel>
                 {/* <div>
           <div className="my-3">
             <h2>Categories</h2>
