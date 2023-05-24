@@ -9,13 +9,13 @@ import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store';
 import { HeartIcon, ShoppingCartIcon, PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/outline';
-import ProductItem from '../../components/ProductItem';
+// import ProductItem from '../../components/ProductItem';
 
 
 export default function ProductScreen(props) {
   const [fill, setFill] = useState(false);
   const [numItem, setNumItem] = useState(1);
-  const { product, products, featuredProducts } = props;
+  const { product } = props;
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
   if (!product) {
