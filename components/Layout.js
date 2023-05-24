@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
 import FooterLotus from './FooterLotus.js'
 
-import FilterPanel from './FilterPanel';
+// import FilterPanel from './FilterPanel';
 
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -59,7 +59,7 @@ export default function Layout({ title, children }) {
       <div className="flex min-h-screen flex-col justify-between relative m-auto">
 
 
-        <header className="sticky top-[-60px] bg-white shadow-md py-2">
+        <header className="sticky top-[-60px] bg-white shadow-md py-2 z-50 ">
           <div className="w-full h-8 flex gap-10 justify-between container m-auto ">
             <div className="mail flex ">
               <MailOutlineIcon />
@@ -69,7 +69,7 @@ export default function Layout({ title, children }) {
               <WhereToVoteIcon />
               <p>Saint Petersburg</p>
             </div>
-            <div className="info flex">
+            <div className="info lg:flex md:hidden">
               <ul className=" flex gap-2">
                 <li>О компании</li>
                 <li>Оплата и доставка</li>
@@ -80,7 +80,7 @@ export default function Layout({ title, children }) {
               </ul>
             </div></div>
           <hr className='mx-2' />
-          <nav className=" flex h-12 items-center  justify-between  w-full m-auto container mt-1">
+          <nav className="flex h-12 items-center  justify-between  w-full m-auto container mt-1">
             <Link href="/" >
               <img
                 src={'/images/logo-pdp-1.png'}
@@ -93,7 +93,7 @@ export default function Layout({ title, children }) {
 
             <form
               onSubmit={submitHandler}
-              className="mx-auto hidden w-full justify-center md:flex"
+              className="mx-auto hidden w-full justify-center md:flex "
             >
               <input
                 onChange={(e) => setQuery(e.target.value)}
@@ -112,7 +112,7 @@ export default function Layout({ title, children }) {
             <div className='flex w-30'>
 
               <Link href="/cart">
-                <a className="p-2">
+                <a className="p-2 flex items-center">
                   <FavoriteBorderIcon />
                 </a>
               </Link>
@@ -172,7 +172,7 @@ export default function Layout({ title, children }) {
                 </Menu>
               ) : (
                 <Link href="/login">
-                  <a className="p-2">Login</a>
+                  <a className="p-2 flex items-center">Login</a>
                 </Link>
               )}
             </div>

@@ -14,6 +14,8 @@ import SlideLotus from "../components/SlideShow.js";
 
 import FilterPanel from "../components/FilterPanel";
 import Service from "../components/Service";
+import Search from "./search";
+
 
 export default function Home({ products, featuredProducts }) {
   const { state, dispatch } = useContext(Store);
@@ -48,6 +50,7 @@ export default function Home({ products, featuredProducts }) {
         ))}
       </Carousel>
       <h2 className="h2 my-4">Latest Products</h2>
+      {/* <Search products={products} /> */}
       <div className=" flex w-full">
         <div className="hidden sm:block">
           <FilterPanel></FilterPanel>
