@@ -10,10 +10,10 @@ const slides = [
   { srcImg: "/images/slide5.png", linkTo: "/login" },
 ];
 
-const handleLink = (link) => {
-  console.log(link);
-};
-const images = slides.map((s, i) => <img key={s.srcImg} src={s.srcImg} />);
+// const handleLink = (link) => {
+//   console.log(link);
+// };
+// const images = slides.map((s, i) => <img key={s.srcImg} src={s.srcImg} />);
 
 const SlideLotus = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

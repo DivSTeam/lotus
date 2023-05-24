@@ -179,7 +179,7 @@ export default function Layout({ title, children }) {
           </nav>
         </header>
 
-        <main className="container m-auto mt-4 px-4">{children}</main>
+        <main className="container m-auto mt-4">{children}</main>
 
         <FooterLotus />
       </div>
